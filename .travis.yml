@@ -2,12 +2,17 @@ language: go
 
 go:
   - 1.8.x
-  - master
 
+before_install:
+  - mkdir -p $GOPATH/bin
+  
 install:
   - curl https://glide.sh/get | sh
   - go get -u github.com/alecthomas/gometalinter
   - gometalinter --install
+
+before_script:
+  - glide install
 
 script:
   - make dev
