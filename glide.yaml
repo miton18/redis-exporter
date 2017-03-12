@@ -1,0 +1,6 @@
+package: github.com/miton18/redis-exporter
+import:
+- package: github.com/Sirupsen/logrus
+  version: ^0.11.4
+- package: github.com/spf13/cobra
+- package: github.com/spf13/viper
