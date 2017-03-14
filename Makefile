@@ -37,3 +37,7 @@ dev: format lint build
 .PHONY: clean
 clean:
 	-rm -r build
+
+.PHONY: travis
+travis: dev
+	ls -lah ./build

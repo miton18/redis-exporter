@@ -1,18 +1,27 @@
 language: go
 
 go:
-  - 1.8.x
+- 1.8.x
 
 before_install:
-  - mkdir -p $GOPATH/bin
-  
+- mkdir -p $GOPATH/bin
+
 install:
-  - curl https://glide.sh/get | sh
-  - go get -u github.com/alecthomas/gometalinter
-  - gometalinter --install
+- curl https://glide.sh/get | sh
+- go get -u github.com/alecthomas/gometalinter
+- gometalinter --install
 
 before_script:
-  - glide install
+- glide install
 
 script:
-  - make dev
+- make travis
+
+deploy:
+  provider: releases
+  api_key:
+    secure: d3ShRULDjG0uuTFZ9utOmlCoTkhqgrXgo35zagNqpLkGfv6m5U43hTut0NLgXNOC3yODiK7E8lAr5xbYwCL5i5ZaNhvvk9MF2/vL+Auxrylzls57Pm7q1AKF207cOCNRF9e3dXL8NRg1893ZzGblWsju8YycfgLxT679ySNpxo1g4QFY7ZOV6ssEiRMybHaXxkliIYxnltrnVyvjW4VpFVv0twoWA0G2tvJxWDokUg5GGV7nTGxOuXvxtjMNGhGo4AkWX9PyhqL1acVMsbqNvD4WXvwQwXFNfBPiGWcXO5Rq9GOeh+YI/4cjf2nf4LfyDAmFleU4TQZEC0VyTd/coaDUh0/Y5tVYnjRKah6o4nJ6xJiWJrSVfi4cvqc63gYfbH8tSm5ypzAa8HO22x8SAg6Brm8Lke5f+cWT+ppbaIwyi4g5NHQIXgzaTG3Rh+w9w9fr6Ed9djShKW6yR2uFVoapbtc85sTXwvIDbqtBpf8648iqaG6KhD+KirHvxf1Ov+EUNdnpu+pminAAWyjrwpDweiPKDB4WLe9L8fhcOIrlleRKGf72HpoDvIU3d69lB8CXk3cqHbPKBlV9vmV4At6GP/HbVv96WSbw5E7tw4v/vSuz150x73Y4DBn33TkBjanjHHUSV/IdQkhYNdMCS9Yc0nUcDHP+0O60cFLOvv0=
+  file: "./build/redis-exporter"
+  on:
+    repo: miton18/redis-exporter
+    tags: true

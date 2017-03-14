@@ -167,7 +167,7 @@ func (e *Exporter) Scrape() bool {
 
 func (e *Exporter) parse(infos *bytes.Buffer) error {
 	infosReader := bufio.NewReader(infos)
-	now := fmt.Sprintf("%v// redis_stats", time.Now().UnixNano()/1000)
+	now := fmt.Sprintf("%v// redis_stats_", time.Now().UnixNano()/1000)
 	var keyVal []string
 
 	e.clear()
